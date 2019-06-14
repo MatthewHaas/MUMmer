@@ -1,0 +1,68 @@
+# 14 June 2019
+
+# Using MUMmer to identify which rice (Oryza) chromosomes match our largest Zizania scaffolds
+
+# These first lines of code were run in: /home/jkimball/mshao/genome_seq
+
+# Scaffold_48 is the largest of the 17 main scaffolds
+# Which line does Scaffold_48 occur on? (4574240 according to this code below)
+grep -n "Scaffold_48" zizania_palustris_13Nov2018_okGsv.fasta
+# Scaffold 49 starts at 5754302
+grep -n "Scaffold_48" zizania_palustris_13Nov2018_okGsv.fasta
+# Use sed to print the range for Scaffold_48 to its own fasta file.. ending position is 1 less than the line where Scaffold_49 begins
+sed -n 4574240,5754301p  zizania_palustris_13Nov2018_okGsv.fasta > Scaffold_48.fsa
+
+# Scaffold_70 starts at 5918114
+grep -n "Scaffold_70" zizania_palustris_13Nov2018_okGsv.fasta
+# Scaffold_71 starts at 7032409
+grep -n "Scaffold_71" zizania_palustris_13Nov2018_okGsv.fasta
+# Use sed to print the range for Scaffold_70 to its own fasta file to blast..
+sed -n 5918114,7032408p  zizania_palustris_13Nov2018_okGsv.fasta > ~/blast/Scaffold_70.fa
+
+# Scaffold_51 is the shortest of the 17 main scaffolds
+# Scaffold_51 starts at 5756861
+grep -n "Scaffold_51" zizania_palustris_13Nov2018_okGsv.fasta
+# Scaffold_52 starts at 5895040
+grep -n "Scaffold_52" zizania_palustris_13Nov2018_okGsv.fasta
+# Print Scaffold_51 to its own fasta file...
+sed -n 5756861,5895039p  zizania_palustris_13Nov2018_okGsv.fasta > ~/blast/Scaffold_51.fa
+
+# These were run in: /home/jkimball/haasx092/blast
+# Load MUMmer (MUM == Maximal Unique Matches)
+# module load MUMmer
+
+# Get Oryza sativa genomes from the NCBI FTP server
+wget ftp://ftp.ncbi.nlm.nih.gov/genomes/Oryza_sativa_Japonica_Group/CHR_01/39947_ref_IRGSP-1.0_chr1.fa.gz
+wget ftp://ftp.ncbi.nlm.nih.gov/genomes/Oryza_sativa_Japonica_Group/CHR_02/39947_ref_IRGSP-1.0_chr2.fa.gz
+wget ftp://ftp.ncbi.nlm.nih.gov/genomes/Oryza_sativa_Japonica_Group/CHR_03/39947_ref_IRGSP-1.0_chr3.fa.gz
+wget ftp://ftp.ncbi.nlm.nih.gov/genomes/Oryza_sativa_Japonica_Group/CHR_04/39947_ref_IRGSP-1.0_chr4.fa.gz
+wget ftp://ftp.ncbi.nlm.nih.gov/genomes/Oryza_sativa_Japonica_Group/CHR_05/39947_ref_IRGSP-1.0_chr5.fa.gz
+wget ftp://ftp.ncbi.nlm.nih.gov/genomes/Oryza_sativa_Japonica_Group/CHR_06/39947_ref_IRGSP-1.0_chr6.fa.gz
+wget ftp://ftp.ncbi.nlm.nih.gov/genomes/Oryza_sativa_Japonica_Group/CHR_07/39947_ref_IRGSP-1.0_chr7.fa.gz
+wget ftp://ftp.ncbi.nlm.nih.gov/genomes/Oryza_sativa_Japonica_Group/CHR_08/39947_ref_IRGSP-1.0_chr8.fa.gz
+wget ftp://ftp.ncbi.nlm.nih.gov/genomes/Oryza_sativa_Japonica_Group/CHR_09/39947_ref_IRGSP-1.0_chr9.fa.gz
+wget ftp://ftp.ncbi.nlm.nih.gov/genomes/Oryza_sativa_Japonica_Group/CHR_10/39947_ref_IRGSP-1.0_chr10.fa.gz
+wget ftp://ftp.ncbi.nlm.nih.gov/genomes/Oryza_sativa_Japonica_Group/CHR_11/39947_ref_IRGSP-1.0_chr11.fa.gz
+wget ftp://ftp.ncbi.nlm.nih.gov/genomes/Oryza_sativa_Japonica_Group/CHR_12/39947_ref_IRGSP-1.0_chr12.fa.gz
+
+# Run nucmer command
+nucmer 39947_ref_IRGSP-1.0_chr1.fa Scaffold_48.fa
+
+# Convert to a plot...
+mummerplot -x "[0:500000]" -y "[0:500000]" -postscript -p mummer out.delta
+
+# Do the same for all 12 chromosomes of rice...
+nucmer 39947_ref_IRGSP-1.0_chr2.fa Scaffold_48.fsa
+mummerplot -x "[0:500000]" -y "[0:500000]" -postscript -p mummer out.delta
+
+# Now for Scaffold_70
+nucmer 39947_ref_IRGSP-1.0_chr1.fa Scaffold_70.fa
+mummerplot -x "[0:500000]" -y "[0:500000]" -postscript -p mummer out.delta
+
+# Maybe the scaffolds are too big for mummer/nucmer to handle and that's why they're not aligning?
+
+# Now for Scaffold_51
+nucmer 39947_ref_IRGSP-1.0_chr1.fa Scaffold_51.fa
+mummerplot -x "[0:500000]" -y "[0:500000]" -postscript -p mummer out.delta
+
+# Smaller size doesn't seem to matter. It also produced negative results. (Meanwhile running rice chromosome 1 against itself works)
