@@ -27,6 +27,75 @@ grep -n "Scaffold_52" zizania_palustris_13Nov2018_okGsv.fasta
 # Print Scaffold_51 to its own fasta file...
 sed -n 5756861,5895039p  zizania_palustris_13Nov2018_okGsv.fasta > ~/blast/Scaffold_51.fa
 
+# Scaffold_1064 starts at: 11019843 and ends at: 12132446
+grep -n ">Scaffold_1064" zizania_palustris_13Nov2018_okGsv.fasta
+grep -n ">Scaffold_1065" zizania_palustris_13Nov2018_okGsv.fasta
+sed -n 11019843,12132445p zizania_palustris_13Nov2018_okGsv.fasta > ~/blast/Scaffold_1064.fa
+
+# Scaffold_415 starts at: 8317766 and ends at: 9376562
+grep -n ">Scaffold_415" zizania_palustris_13Nov2018_okGsv.fasta
+grep -n ">Scaffold_416" zizania_palustris_13Nov2018_okGsv.fasta
+sed -n 8317766,9376561p zizania_palustris_13Nov2018_okGsv.fasta > ~/blast/Scaffold_415.fa
+
+# Scaffold_93 starts at: 7058004 and ends at: 8091776
+grep -n ">Scaffold_93" zizania_palustris_13Nov2018_okGsv.fasta
+grep -n ">Scaffold_94" zizania_palustris_13Nov2018_okGsv.fasta
+sed -n 7058004,8091775p zizania_palustris_13Nov2018_okGsv.fasta > ~/blast/Scaffold_93.fa
+
+# Scaffold_18 starts at: 3540870 and ends at: 4528571
+grep -n ">Scaffold_18" zizania_palustris_13Nov2018_okGsv.fasta
+grep -n ">Scaffold_19" zizania_palustris_13Nov2018_okGsv.fasta
+sed -n 3540870,4528570p zizania_palustris_13Nov2018_okGsv.fasta > ~/blast/Scaffold_18.fa
+
+# Scaffold_13 starts at: 2577498 and ends at: 3532207
+grep -n ">Scaffold_13" zizania_palustris_13Nov2018_okGsv.fasta
+grep -n ">Scaffold_14" zizania_palustris_13Nov2018_okGsv.fasta
+sed -n 2577498,3532206p zizania_palustris_13Nov2018_okGsv.fasta > ~/blast/Scaffold_13.fa
+
+# Scaffold_1 starts at: 1 and ends at: 951881
+grep -n ">Scaffold_1" zizania_palustris_13Nov2018_okGsv.fasta
+grep -n ">Scaffold_2" zizania_palustris_13Nov2018_okGsv.fasta
+sed -n 1,951880p zizania_palustris_13Nov2018_okGsv.fasta > ~/blast/Scaffold_1.fa
+
+# Scaffold_1062 starts at: 9836786 and ends at: 10593694
+grep -n ">Scaffold_1062" zizania_palustris_13Nov2018_okGsv.fasta
+grep -n ">Scaffold_1063" zizania_palustris_13Nov2018_okGsv.fasta
+sed -n 9836786,10593693p zizania_palustris_13Nov2018_okGsv.fasta > ~/blast/Scaffold_1062.fa
+
+# Scaffold_1065 starts at: 12132446 and ends at: 12798615
+grep -n ">Scaffold_1065" zizania_palustris_13Nov2018_okGsv.fasta
+grep -n ">Scaffold_1066" zizania_palustris_13Nov2018_okGsv.fasta
+sed -n 12132446,12798614p zizania_palustris_13Nov2018_okGsv.fasta > ~/blast/Scaffold_1065.fa
+
+# Scaffold_9 starts at: 1939679 and ends at: 2571858
+grep -n ">Scaffold_9" zizania_palustris_13Nov2018_okGsv.fasta
+grep -n ">Scaffold_10" zizania_palustris_13Nov2018_okGsv.fasta
+sed -n 1939679,2571857p zizania_palustris_13Nov2018_okGsv.fasta > ~/blast/Scaffold_9.fa
+
+# Scaffold_3 starts at: 952664 and ends at: 1541319
+grep -n ">Scaffold_3" zizania_palustris_13Nov2018_okGsv.fasta
+grep -n ">Scaffold_4" zizania_palustris_13Nov2018_okGsv.fasta
+sed -n 952664,1541318p zizania_palustris_13Nov2018_okGsv.fasta > ~/blast/Scaffold_3.fa
+
+# Scaffold_1063 starts at: 10593694 and ends at: 11019843
+grep -n ">Scaffold_1063" zizania_palustris_13Nov2018_okGsv.fasta
+grep -n ">Scaffold_1064" zizania_palustris_13Nov2018_okGsv.fasta
+sed -n 10593694,11019842p zizania_palustris_13Nov2018_okGsv.fasta > ~/blast/Scaffold_1063.fa
+
+# Scaffold_7 starts at: 1548149 and ends at: 1939410
+grep -n ">Scaffold_7" zizania_palustris_13Nov2018_okGsv.fasta
+grep -n ">Scaffold_8" zizania_palustris_13Nov2018_okGsv.fasta
+sed -n 1548149,1939409p zizania_palustris_13Nov2018_okGsv.fasta > ~/blast/Scaffold_7.fa
+
+# Scaffold_693 starts at: 9519552 and ends at: 9760142
+grep -n ">Scaffold_693" zizania_palustris_13Nov2018_okGsv.fasta
+grep -n ">Scaffold_694" zizania_palustris_13Nov2018_okGsv.fasta
+sed -n 9519552,9760141p zizania_palustris_13Nov2018_okGsv.fasta > ~/blast/Scaffold_693.fa
+
+##########################################
+## END of making individual FASTA files ##
+##########################################
+
 # These were run in: /home/jkimball/haasx092/blast
 # Load MUMmer (MUM == Maximal Unique Matches)
 # module load MUMmer
@@ -49,20 +118,24 @@ wget ftp://ftp.ncbi.nlm.nih.gov/genomes/Oryza_sativa_Japonica_Group/CHR_12/39947
 nucmer 39947_ref_IRGSP-1.0_chr1.fa Scaffold_48.fa
 
 # Convert to a plot...
-mummerplot -x "[0:500000]" -y "[0:500000]" -postscript -p mummer out.delta
+mummerplot -postscript -p mummer out.delta
 
 # Do the same for all 12 chromosomes of rice...
 nucmer 39947_ref_IRGSP-1.0_chr2.fa Scaffold_48.fsa
-mummerplot -x "[0:500000]" -y "[0:500000]" -postscript -p mummer out.delta
+mummerplot -postscript -p mummer out.delta
 
-# Now for Scaffold_70
+# Scaffold_70
 nucmer 39947_ref_IRGSP-1.0_chr1.fa Scaffold_70.fa
-mummerplot -x "[0:500000]" -y "[0:500000]" -postscript -p mummer out.delta
+mummerplot -postscript -p mummer out.delta
 
-# Maybe the scaffolds are too big for mummer/nucmer to handle and that's why they're not aligning?
-
-# Now for Scaffold_51
+# Scaffold_51
 nucmer 39947_ref_IRGSP-1.0_chr1.fa Scaffold_51.fa
-mummerplot -x "[0:500000]" -y "[0:500000]" -postscript -p mummer out.delta
+mummerplot -postscript -p mummer out.delta
 
-# Smaller size doesn't seem to matter. It also produced negative results. (Meanwhile running rice chromosome 1 against itself works)
+# 17 June 2019 update: The problem of the blank plots encountered last week was that the genomic window was merely too small. Removing specific genomic coordinates eliminated the problem.
+
+# Scaffold_1064
+nucmer 39947_ref_IRGSP-1.0_chr1.fa Scaffold_1064.fa
+mummerplot -postscript -p mummer out.delta
+
+# Do the same for the remainder of the major scaffolds (Scaffold 415, 93, 18, 13, 1, 1062, 1065, 9, 3, 1063, 7, 693) -- Order is based on decreasing size.
